@@ -207,6 +207,173 @@ class treeData {
   getParents() {
     // 获取
   }
+  getAlertState() {
+    // 获取节点的告警状态
+  }
+  getState(){
+    // 更新当前节点的信息
+  }
+  getRoot(){
+    // 获取根节点的信息
+  }
+  $on(name, callback) {
+    // 事件触发
+  }
+  $emit(name, data) {
+    // 事件发布
+  }
 }
+...
+extend(treeDataService, {
+  getValidId(id, type) {
+    //获取指定id对应节点，下面第一个设备，如节点本身为设备则返回节点本身
+  } ,
+  getFirstDevice(){
+    // 获取能搜索到的第一个设备
+  },
+  getAlertState(){ 
+    // 获取所有节点的告警状态
+  },
+  getSensors(){
+    // 获取当前设备的所有测点
+  },
+  getGeneral(){
+    // 获取当前节点的测点 + 数据项
+  },
+  getRoot() {
+    return structrureDone;
+  }
+});
+return treeDataService;
+```
+
+##### ps-ui-router-handler.js 路由跳转控制模块
+
+```javascript
+extend(factory, {
+  getDefaultParamByName(routername){
+    //通过一个路由的名称查询它对应的默认参数
+  }
+  getCurrentRouterType(){
+    // 获取当前路由对象
+  }
+  getCurrentTab(){
+    // 获取当前tab对象信息
+  }
+  getCurrentMainTab(){
+    // 获取当前根层级信息
+  }
+  getSubTabs() {
+    // 获取二级菜单目录
+  }
+  getMinorTabs(){
+    // 获取三级菜单目录
+  }
+  moveToNodeByCondition(callback){
+    // 根据表达式移动到对应的路由
+  }
+  moveToNodeByIndex(url, arr, ext) {
+    // 根据所提供的索引移动到对应的路由
+  }
+  getRoleValues(){
+    // 获取角色的values对象信息
+  }
+})
+
 
 ```
+
+##### **common-method-service2.service** 通用服务 
+
+```javascript
+
+class commonMethodService {
+  constructor(){}
+  getAlertWord(val){
+    //根据节点告警状态值选择显示对应的中文
+  }
+  getTaskJob(appsource) {
+    // 根据任务来源选择任务分类
+  }
+  getExplainerFromDiction(name){
+    // 根据字典含义取值
+  }
+  getAppSource(variables){
+    // 获取任务来源
+  }
+  $findValue(data, attr) {
+    // 遍历一个对象找个是否存在某个值，值是多少
+  }
+  treeNavigateTo(id, deviceOnly, node) {
+    // 根据设备id信息，确定移动到的目标路由参数
+  }
+  filterValues(data, attr) {
+    // 遍历一个对象找个是否存在某个值，过滤并得到这些值
+  }
+  validate(obj, scope) {
+    /**验证scope下面对象的每个值都不为undefined**/
+  }
+  refresh(type, params) {
+    /**刷新当前页面的方法**/
+  }
+  modal({ title, directive, scope, top, width, params }) {
+     /** 弹出模态框的方法 **/
+  }
+  navigateToTracker(ext, ticketNo) {
+    /** 跳转到某个页面的方法 **/
+  }
+  getRoot(){
+     /** 获取树的根节点 **/
+  }
+  getCurrentParents(){
+    /** 获取当前节点的所有父节点 **/
+  }
+  findFlowByTicketNo(ticketNo) {
+    /** 通过工单号获取流程图的内容 **/
+  }
+  getKpiValue(nodeId, kpis) {
+    /** 根据ci,kpi查询节点值 **/
+  }
+  getDataItemValuelist(params) {
+    // 获取节点的kpivalue数据
+  }
+}
+
+
+```
+
+##### 项目启动方法和本地调试：
+
+###### 新项目安装
+
+```linux
+$ sudo npm i
+$ npm run pack baogang/config
+$ npm run pack core/output
+```
+
+###### 项目本地调试
+
+```linux
+$ npm run server
+```
+
+###### 本地前端打包
+
+```linux
+$ npm run gulp release
+```
+
+###### 从一个环境拷贝仪表板视图
+
+```linux
+$ npm run import [viewId] [环境号]
+```
+
+###### 从191环境下载仪表板视图12345678到本地
+
+```linux
+$ npm run import 12345678 191
+```
+
+##### smart-angular 组件的使用与维护
